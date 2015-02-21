@@ -15,6 +15,12 @@ public class LampManager {
 	}
 
 	public Lamp set(Lamp lamp) {
-		return new Lamp(42, true);
+		if(lamp.isStatus()){
+			lamp.setStatus(tc.startClient(lamp.getId()*10+1));
+		}
+		else{
+			lamp.setStatus(tc.startClient(lamp.getId()*10));
+		}
+		return lamp;
 	}
 }

@@ -32,8 +32,10 @@ public class LampController {
 	@POST
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getGeoFilename(Lamp lamp) {
+	public Response setLamp(@PathParam("id") int id, Lamp lamp) {
 		try {
+			System.out.println("nice");
+			lamp.setId(id);
 			return StatusHelper.getStatusOk(lampManager.set(lamp));
 		} catch (Exception e) {
 			return StatusHelper.getStatusBadRequest();
