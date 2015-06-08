@@ -1,26 +1,26 @@
 package ch.smarthome.bll.manager;
 
 import ch.smarthome.bll.entity.Lamp;
-import ch.smarthome.dal.ClientLampSocket;
+import ch.smarthome.dal.ClientLampConnector;
 
 public class LampManager {
-	private ClientLampSocket tc = new ClientLampSocket();
+	private ClientLampConnector tc = new ClientLampConnector();
 
 	public LampManager() {
 		super();
 	}
 
 	public Lamp get(int id) {
-		return new Lamp(id, tc.startClient(id));
+		return tc.getLed(id);
 	}
 
-	public Lamp set(Lamp lamp) {
-		if(lamp.isStatus()){
-			lamp.setStatus(tc.startClient(lamp.getId()*10+1));
+	public void set(Lamp lamp) {
+		/*if(lamp.getStatus()==1){
+			lamp.setStatus(tc.getLed(lamp.getId()*10+1));
 		}
 		else{
-			lamp.setStatus(tc.startClient(lamp.getId()*10));
+			lamp.setStatus(tc.getLed(lamp.getId()*10));
 		}
-		return lamp;
+		return lamp;*/
 	}
 }

@@ -36,7 +36,8 @@ public class LampController {
 		try {
 			System.out.println("nice");
 			lamp.setId(id);
-			return StatusHelper.getStatusOk(lampManager.set(lamp));
+			lampManager.set(lamp);
+			return StatusHelper.getStatusOk(null);
 		} catch (Exception e) {
 			return StatusHelper.getStatusBadRequest();
 		}

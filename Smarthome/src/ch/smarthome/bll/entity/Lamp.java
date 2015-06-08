@@ -1,14 +1,16 @@
 package ch.smarthome.bll.entity;
 
 public class Lamp {
+
+
 	private int id;
-	private boolean status;
+	private int status;
 
 	public Lamp() {
 		super();
 	}
 
-	public Lamp(int id, boolean status) {
+	public Lamp(int id, int status) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -22,12 +24,17 @@ public class Lamp {
 		this.id = id;
 	}
 
-	public boolean isStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	@Override
+	public String toString() {
+		return "Lamp [id=" + id + ", status=" + status + "]";
 	}
 
 }
