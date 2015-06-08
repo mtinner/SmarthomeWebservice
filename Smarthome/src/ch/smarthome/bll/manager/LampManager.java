@@ -11,16 +11,10 @@ public class LampManager {
 	}
 
 	public Lamp get(int id) {
-		return tc.getLed(id);
+		return tc.getLamp(id);
 	}
 
 	public void set(Lamp lamp) {
-		/*if(lamp.getStatus()==1){
-			lamp.setStatus(tc.getLed(lamp.getId()*10+1));
-		}
-		else{
-			lamp.setStatus(tc.getLed(lamp.getId()*10));
-		}
-		return lamp;*/
+		tc.setLamp(lamp);
 	}
 }

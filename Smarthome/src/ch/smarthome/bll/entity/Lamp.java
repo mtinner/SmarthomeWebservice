@@ -31,10 +31,4 @@ public class Lamp {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	@Override
-	public String toString() {
-		return "Lamp [id=" + id + ", status=" + status + "]";
-	}
-
 }

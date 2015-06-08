@@ -30,12 +30,9 @@ public class LampController {
 	}
 	
 	@POST
-	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response setLamp(@PathParam("id") int id, Lamp lamp) {
+	public Response setLamp(Lamp lamp) {
 		try {
-			System.out.println("nice");
-			lamp.setId(id);
 			lampManager.set(lamp);
 			return StatusHelper.getStatusOk(null);
 		} catch (Exception e) {

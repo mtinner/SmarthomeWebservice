@@ -9,7 +9,7 @@ import ch.smarthome.helper.PropertyHelper;
 
 public class ClientLampConnector {
 
-	public Lamp getLed(int id) {
+	public Lamp getLamp(int id) {
 		PropertyHelper property = new PropertyHelper();
 		String host = property.getProperty("ESP");
 
@@ -30,5 +30,16 @@ public class ClientLampConnector {
 		}
 
 		return response.getEntity(Lamp.class);
+	}
+	
+	public void setLamp(Lamp lamp){
+		PropertyHelper property = new PropertyHelper();
+		String host = property.getProperty("ESP");
+
+		Client client = Client.create();
+		String s = String.format("%s%s", host, "led/");
+		client.getExecutorService();
+		WebResource webResource = client.resource(s);
+		ClientResponse response = webResource.post(ClientResponse.class, lamp);
 	}
 }
