@@ -30,12 +30,9 @@ public class ClientLampConnector {
 		return lamp;
 	}
 
-	public void setLamp(Lamp lamp) {
-		PropertyHelper property = new PropertyHelper();
-		String host = property.getProperty("ESP");
-
+	public void setLamp(String ip, Lamp lamp) {
 		Client client = Client.create();
-		String s = String.format("%s%s", host, "led/");
+		String s = String.format("%s%s%s","http://", ip, "/led");
 		client.getExecutorService();
 		WebResource webResource = client.resource(s);
 		ClientResponse response = webResource.post(ClientResponse.class, lamp);

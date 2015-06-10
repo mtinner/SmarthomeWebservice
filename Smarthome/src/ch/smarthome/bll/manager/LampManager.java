@@ -36,7 +36,7 @@ public class LampManager {
 	}
 
 	public void set(Lamp lamp) {
-		tc.setLamp(lamp);
+		tc.setLamp(idToIp(lamp.getId()),new Lamp(2,lamp.getStatus())); //120
 	}
 	
 	private void initializeAvailableStations(){
