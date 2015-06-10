@@ -16,7 +16,7 @@ import ch.smarthome.helper.StatusHelper;
 
 @Path("lamp")
 public class LampController {
-	private LampManager lampManager= new LampManager();
+	private static LampManager lampManager= new LampManager();
 	
 	@GET
 	@Path("{id}")

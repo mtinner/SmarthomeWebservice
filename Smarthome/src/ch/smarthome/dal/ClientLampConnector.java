@@ -1,5 +1,7 @@
 package ch.smarthome.dal;
 
+import java.net.ConnectException;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -9,30 +11,26 @@ import ch.smarthome.helper.PropertyHelper;
 
 public class ClientLampConnector {
 
-	public Lamp getLamp(int id) {
-		PropertyHelper property = new PropertyHelper();
-		String host = property.getProperty("ESP");
+	public Lamp getLamp(String ip, int id) {
+		ClientResponse response = null;
+		Lamp lamp = null;
 
-		Client client = Client.create();
-		String s = String.format("%s%s%d", host, "led/", id);
-		client.getExecutorService();
-		WebResource webResource = client.resource(s);
-		ClientResponse response = webResource.get(ClientResponse.class);
 		try {
+			Client client = Client.create();
+			String s = String.format("%s%s%s%d", "http://", ip, "/led/", id);
+			client.getExecutorService();
+			WebResource webResource = client.resource(s);
 			response = webResource.get(ClientResponse.class);
+
+			lamp = response.getEntity(Lamp.class);
 		} catch (Exception e) {
-			e.getMessage();
+			System.err.println("IP: " + ip);
+			System.err.println("Message: " + e.getMessage());
 		}
-
-		if (response.getStatus() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatus());
-		}
-
-		return response.getEntity(Lamp.class);
+		return lamp;
 	}
-	
-	public void setLamp(Lamp lamp){
+
+	public void setLamp(Lamp lamp) {
 		PropertyHelper property = new PropertyHelper();
 		String host = property.getProperty("ESP");
 
